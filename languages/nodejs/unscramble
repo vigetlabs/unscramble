@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var input = process.argv[2];
+var output = ''; // TODO lol
+
+if (!input) {
+  process.exit(1);
+}
+
+console.log(output);
