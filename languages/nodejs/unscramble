@@ -1,12 +1,53 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-var input = process.argv[2];
-var output = ''; // TODO lol
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec)
 
-if (!input) {
-  process.exit(1);
+const input = process.argv[2]
+const characters = input.split('')
+let permutations = []
+
+// Heap's algorithm
+function findPermutations(n, array) {
+  if (n == 1) {
+    permutations.push([...array])
+    return
+  }
+
+  for (var i = 0; i < n; i+= 1) {
+    findPermutations(n - 1, array)
+
+    // If n is even
+    if (n % 2 == 0) {
+      swap(array, i, n - 1)
+    } else {
+      swap(array, 0, n - 1)
+    }
+  }
 }
 
-console.log(output);
+function swap(array, a, b) {
+  [array[a], array[b]] = [array[b], array[a]]
+}
+
+findPermutations(characters.length, characters)
+
+const possibleWords = permutations
+  .map(p => p.join(''))
+
+async function checkDictionary(words) {
+  const wordsToGrep = words.join('\\|')
+  const foundWords = await exec(
+    `cat /usr/share/dict/words | grep -w '${wordsToGrep}'`
+  )
+  return foundWords.stdout.trim()
+};
+
+checkDictionary(possibleWords).then(words => {
+  // return the answer
+  console.log(words.split('\n')[0])
+}).catch(ex => {
+  console.log(ex)
+})
