@@ -1,0 +1,10 @@
+namespace :Ruby do
+  task :check do
+    `which cc`
+    raise "Please ensure you have a valid C compiler" unless $?.success?
+  end
+
+  task :build => :check do
+    # no-op
+  end
+end

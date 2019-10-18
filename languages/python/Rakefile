@@ -1,0 +1,5 @@
+namespace :Python do
+  task :unscramble do
+    sh "python3 unscramble.py"
+  end
+end
