@@ -1,0 +1,3 @@
+#!/bin/bash
+
+node languages/typescript/unscramble.js $1
