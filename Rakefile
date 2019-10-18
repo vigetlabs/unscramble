@@ -1,7 +1,7 @@
 desc "Build and run all available programs in the languages/* directory"
 task :run do
   puts "Building all languages ..."
-  Dir["languages/*/Rakefile"].sort.each do |path_to_rakefile|
+  Dir["languages/elixir_sol/Rakefile"].sort.each do |path_to_rakefile|
     base_path, language, _ = path_to_rakefile.split('/')
 
     language_path = "#{base_path}/#{language}"

@@ -4,7 +4,12 @@ defmodule Unscramble do
   """
   def parse(letters) do
     input = make_hash(letters)
-    lookup = prepare_dictionary()
+    dictionary_stream() |> Stream.drop_while(fn word ->
+      input !== word |> String.trim() |> make_hash
+    end)
+    |> Enum.take(1)
+    |> hd
+    |> String.trim()
   end
 
   def make_hash(letters) do
@@ -25,5 +30,9 @@ defmodule Unscramble do
   def prepare_dictionary() do
     File.read!("/usr/share/dict/words")
     |> String.split("\n")
+  end
+
+  def dictionary_stream() do
+    File.stream!("/usr/share/dict/words")
   end
 end

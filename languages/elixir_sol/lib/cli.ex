@@ -3,6 +3,6 @@ defmodule Unscramble.CLI do
   Documentation for Unscramble.
   """
   def main([scrambled_word | _]) do
-    Unscramble.parse(scrambled_word)
+    IO.puts Unscramble.parse(scrambled_word)
   end
 end
