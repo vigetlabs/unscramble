@@ -1,21 +1,15 @@
 # Unscramble
 
-**TODO: Add description**
+An elixir application that unscrambles words.
 
-## Installation
+## Build
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_sol` to your list of dependencies in `mix.exs`:
+To build the executable run the make build task (the compiled file will be output to the same directory as the `mix.exs` file):
 
-```elixir
-def deps do
-  [
-    {:elixir_sol, "~> 0.1.0"}
-  ]
-end
-```
+        make build
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/elixir_sol](https://hexdocs.pm/elixir_sol).
+## Running the App
 
+After building the app: from the project root directory, invoke the built executable with a single scrambled word argument:
+
+        unscramble tmorcpue
