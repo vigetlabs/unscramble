@@ -9,7 +9,7 @@ class UnscrambleTest < MiniTest::Test
     'cluen'     => 'uncle',
     'rubwor'    => 'burrow',
     'ittcek'    => 'ticket',
-    'nitmyu'    => 'mutiny',
+    'nitmyu'    => 'munity',
     'cuthh'     => 'hutch',
     'rptiem'    => 'permit',
     'fryrul'    => 'flurry'
