@@ -36,7 +36,7 @@ inputLetterCounts = getLetterCounts(input)
 match = nil
 
 for word in dictionaryIterator do
-  if string.len(word) == string.len(input) then
+  if string.len(word) == string.len(input) and string.find(input, string.sub(word, 1, 1)) ~= nil then
     wordLetterCounts = getLetterCounts(word)
 
     isMatch = true

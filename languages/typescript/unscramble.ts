@@ -26,7 +26,7 @@ const getLetterCounts = (word) => {
 const inputLetterCounts = getLetterCounts(input)
 
 const match = dictionary.find((word) => {
-  if (word.length !== input.length) {
+  if (word.length !== input.length || !input.includes(word[0])) {
     return false
   }
 
