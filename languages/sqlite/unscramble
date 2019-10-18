@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+dict="/tmp/unscramble_dict.txt"
+db="/tmp/unscramble_db"
+
+normalize() {
+  echo "$1" | fold -w1 | sort | tr -d '\n'
+}
+
+if [ ! -f "$dict" ]; then
+  ruby -e 'File.open("/usr/share/dict/words").each { |word| puts "#{word.strip} #{word.strip.chars.sort.join}" }' >> "$dict"
+fi
+
+if [ ! -f "$db" ]; then
+  sqlite3 -batch "$db" <<EOF
+create table words (word text, normal text);
+create index normal_idx on words(normal);
+.separator ' '
+.import $dict words
+EOF
+fi
+
+sqlite3 "$db" "select word from words where normal = '$(normalize "$1")' limit 1"
