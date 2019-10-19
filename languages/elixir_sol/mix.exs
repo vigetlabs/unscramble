@@ -19,7 +19,9 @@ defmodule Unscramble.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:persistent_ets, "~> 0.1.0"}
+    ]
   end
 
   def escript do

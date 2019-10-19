@@ -3,6 +3,10 @@ defmodule Unscramble.CLI do
   Documentation for Unscramble.
   """
   def main([scrambled_word | _]) do
-    IO.puts(Unscramble.parse(scrambled_word) |> Enum.join(", "))
+    Unscramble.Cache.initialize_cache()
+    answer = Unscramble.parse(scrambled_word)
+    Unscramble.Cache.clear_cache()
+
+    IO.puts(answer)
   end
 end
