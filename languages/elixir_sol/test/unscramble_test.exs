@@ -24,17 +24,17 @@ defmodule UnscrambleTest do
     # Temporary stuff to fix improper test exits which leave the cache in a weird
     # state. Sometimes this still fails and you have to `rm unscramble.tab` before
     # running it again and successfully regenerating the cache file.
-    Unscramble.Cache.clear_cache()
-    Unscramble.Cache.initialize_cache()
+    Unscramble.Cache.clear()
+    Unscramble.Cache.initialize()
     :ok
   end
 
   test "parse/1" do
-    Enum.each(@jumbles, fn {key, value} ->
-      assert Unscramble.parse(key) == value
+    Enum.each(@jumbles, fn {scramble, word} ->
+      assert Unscramble.parse(scramble) == word
     end)
 
-    Unscramble.Cache.clear_cache()
+    Unscramble.Cache.clear()
   end
 
   test "converts 10" do
@@ -67,9 +67,9 @@ defmodule UnscrambleTest do
 
     finish = now()
 
-    IO.puts("#{quantity} Lookups: #{DateTime.diff(finish, start, :millisecond)}ms")
+    IO.puts("\n#{quantity} Lookups: #{DateTime.diff(finish, start, :millisecond)}ms")
 
-    Unscramble.Cache.clear_cache()
+    Unscramble.Cache.clear()
   end
 
   defp make_cases(quantity, range, offset) do

@@ -3,9 +3,9 @@ defmodule Unscramble.CLI do
   Documentation for Unscramble.
   """
   def main([scrambled_word | _]) do
-    Unscramble.Cache.initialize_cache()
+    Unscramble.Cache.initialize()
     answer = Unscramble.parse(scrambled_word)
-    Unscramble.Cache.clear_cache()
+    Unscramble.Cache.clear()
 
     IO.puts(answer)
   end

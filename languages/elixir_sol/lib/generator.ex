@@ -12,20 +12,20 @@ defmodule Unscramble.Generator do
     end)
   end
 
-  def dictionary_stream() do
+  defp dictionary_stream() do
     File.stream!(@dict)
   end
 
-  def scramble(word),
+  defp scramble(word),
     do: scramble(word, {[], String.length(word)})
 
-  def scramble(_, {scrambles, 0}),
+  defp scramble(_, {scrambles, 0}),
     do: MapSet.new(scrambles)
 
-  def scramble(word, {scrambles, rounds}),
+  defp scramble(word, {scrambles, rounds}),
     do: scramble(word, {[variation(word) | scrambles], rounds - 1})
 
-  def variation(word) do
+  defp variation(word) do
     word
     |> String.split("", trim: true)
     |> Enum.shuffle()
