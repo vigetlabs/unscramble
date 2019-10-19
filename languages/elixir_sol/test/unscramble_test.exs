@@ -4,20 +4,20 @@ defmodule UnscrambleTest do
   doctest Unscramble
 
   @jumbles %{
-    "tmorcpue"  => "computer",
-    "crootd"    => "doctor",
-    "salos"     => "lasso, ossal",
-    "gfroo"     => "forgo",
-    "cluen"     => "uncle",
-    "rubwor"    => "burrow",
-    "nitmyu"    => "munity, mutiny",
-    "ittcek"    => "ticket",
-    "cuthh"     => "hutch",
-    "rptiem"    => "permit",
-    "fryrul"    => "flurry",
-    "ot"        => "to",
-    "hye"       => "hey",
-    "ebdt"      => "debt"
+    "tmorcpue" => "computer",
+    "crootd" => "doctor",
+    "salos" => "lasso, ossal",
+    "gfroo" => "forgo",
+    "cluen" => "uncle",
+    "rubwor" => "burrow",
+    "nitmyu" => "munity, mutiny",
+    "ittcek" => "ticket",
+    "cuthh" => "hutch",
+    "rptiem" => "permit",
+    "fryrul" => "flurry",
+    "ot" => "to",
+    "hye" => "hey",
+    "ebdt" => "debt"
   }
 
   setup do
@@ -53,7 +53,6 @@ defmodule UnscrambleTest do
     test_with_sample_size(50000, 150_000, 50_000)
   end
 
-
   test "converts 500000" do
     test_with_sample_size(500_000, 150_000, 50_000)
   end
@@ -68,7 +67,7 @@ defmodule UnscrambleTest do
 
     finish = now()
 
-    IO.puts "#{quantity} Lookups: #{DateTime.diff(finish, start, :millisecond)}ms"
+    IO.puts("#{quantity} Lookups: #{DateTime.diff(finish, start, :millisecond)}ms")
 
     Unscramble.Cache.clear_cache()
   end

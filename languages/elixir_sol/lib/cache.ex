@@ -13,14 +13,14 @@ defmodule Unscramble.Cache do
   def clear_cache() do
     case :ets.info(@cache_table) do
       :undefined -> nil
-      _          -> PersistentEts.delete(@cache_table)
+      _ -> PersistentEts.delete(@cache_table)
     end
   end
 
   def create_persistent_table() do
     case :ets.info(@cache_table) do
       :undefined -> PersistentEts.new(@cache_table, @cache_file_path, @ets_args)
-      _          -> nil
+      _ -> nil
     end
   end
 
@@ -30,7 +30,7 @@ defmodule Unscramble.Cache do
 
   def populate_cache_if_empty() do
     case populated?() do
-      true  -> nil
+      true -> nil
       false -> insert_data()
     end
   end
@@ -47,7 +47,7 @@ defmodule Unscramble.Cache do
   def populated?() do
     case :ets.info(@cache_table, :size) do
       :undefined -> false
-      size       -> size > 0
+      size -> size > 0
     end
   end
 end

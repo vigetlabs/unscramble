@@ -1,18 +1,19 @@
 defmodule Unscramble.Helpers do
   def tuple_from_word(word) do
-    normalized_word = word
-    |> String.downcase()
-    |> String.trim()
-    |> String.to_charlist()
+    w =
+      word
+      |> String.downcase()
+      |> String.trim()
+      |> String.to_charlist()
 
-    {letter_product(normalized_word), letter_sum(normalized_word)}
+    {product(w), sum(w)}
   end
 
-  def letter_product(charlist) do
+  def product(charlist) do
     charlist |> Enum.reduce(1, &Kernel.*/2)
   end
 
-  def letter_sum(charlist) do
+  def sum(charlist) do
     charlist |> Enum.sum()
   end
 end
