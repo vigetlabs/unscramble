@@ -22,4 +22,4 @@ erl_crash.dump
 # Project excluded files.
 unscramble-*.tar
 unscramble
-umscramble.tab
+*.tab
