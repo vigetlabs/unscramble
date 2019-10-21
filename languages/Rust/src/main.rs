@@ -32,6 +32,6 @@ fn get_matches(word: &str) -> io::Result<Vec<String>> {
 
 fn sort_chars(word: &str) -> Vec<char> {
   let mut chars: Vec<char> = word.chars().collect();
-  chars.sort();
+  chars.sort_unstable();
   chars
 }
