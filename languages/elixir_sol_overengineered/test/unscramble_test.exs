@@ -29,10 +29,24 @@ defmodule UnscrambleTest do
     :ok
   end
 
-  test "parse/1" do
-    Enum.each(@jumbles, fn {scramble, word} ->
-      assert Unscramble.parse(scramble) == word
+  test "parse/1 parses scrambled words" do
+    duration = measure(fn ->
+      Enum.each(@jumbles, fn {scramble, word} ->
+        assert Unscramble.parse(scramble) == word
+      end)
     end)
+
+    IO.puts("\nSample Test Case: #{duration}ms")
+
+    Unscramble.Cache.clear()
+  end
+
+  test "parse/1 doesn't parse non-sense input" do
+    duration = measure(fn ->
+      assert Unscramble.parse("zzzzzzzzzzzzz") == nil
+    end)
+
+    IO.puts("\nNil Case: #{duration}ms")
 
     Unscramble.Cache.clear()
   end
@@ -59,15 +73,14 @@ defmodule UnscrambleTest do
 
   defp test_with_sample_size(quantity, range \\ 200_000, offset \\ 100_000) do
     cases = make_cases(quantity, range, offset)
-    start = now()
 
-    Enum.each(cases, fn [scrambled_word, word] ->
-      assert String.contains?(Unscramble.parse(scrambled_word), word)
+    duration = measure(fn ->
+      Enum.each(cases, fn [scrambled_word, word] ->
+        assert String.contains?(Unscramble.parse(scrambled_word), word)
+      end)
     end)
 
-    finish = now()
-
-    IO.puts("\n#{quantity} Lookups: #{DateTime.diff(finish, start, :millisecond)}ms")
+    IO.puts("\n#{quantity} Lookups: #{duration}ms")
 
     Unscramble.Cache.clear()
   end
@@ -83,4 +96,12 @@ defmodule UnscrambleTest do
   end
 
   defp now(), do: DateTime.now("Etc/UTC") |> elem(1)
+
+  defp measure(callback) do
+    start = now()
+    callback.()
+    finish = now()
+
+    DateTime.diff(finish, start, :millisecond)
+  end
 end

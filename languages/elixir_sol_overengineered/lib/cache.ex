@@ -21,6 +21,8 @@ defmodule Unscramble.Cache do
     end
   end
 
+  # private
+
   defp create_table() do
     case :ets.info(@cache_table) do
       :undefined -> PersistentEts.new(@cache_table, @cache_file_path, @ets_args)

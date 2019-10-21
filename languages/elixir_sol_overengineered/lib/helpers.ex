@@ -1,19 +1,21 @@
 defmodule Unscramble.Helpers do
   def tuple_from_word(word) do
-    w =
+    chars =
       word
       |> String.downcase()
       |> String.trim()
       |> String.to_charlist()
 
-    {product(w), sum(w)}
+    {product(chars), sum(chars)}
   end
 
-  def product(charlist) do
+  # private
+
+  defp product(charlist) do
     charlist |> Enum.reduce(1, &Kernel.*/2)
   end
 
-  def sum(charlist) do
+  defp sum(charlist) do
     charlist |> Enum.sum()
   end
 end

@@ -5,10 +5,12 @@ defmodule Unscramble do
 
   def parse(word) do
     case Unscramble.Cache.find(word) do
-      matches -> present_answers(matches)
       [] -> nil
+      matches -> present_answers(matches)
     end
   end
+
+  # private
 
   defp present_answers(matches) do
     present_answers(matches, [])

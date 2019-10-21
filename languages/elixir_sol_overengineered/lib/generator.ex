@@ -12,6 +12,8 @@ defmodule Unscramble.Generator do
     end)
   end
 
+  # private
+
   defp dictionary_stream() do
     File.stream!(@dict)
   end
