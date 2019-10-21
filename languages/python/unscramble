@@ -3,17 +3,11 @@
 
 import sys
 
-#file = open("/usr/share/dict/words",'r')
-#print(file.read())
-
-
 def main():
   if len(sys.argv) < 2:
     print("please provide a word to unscramble")
-  else: 
+  else:
     input = str(sys.argv[1])
-
-
 
     with open("/usr/share/dict/words") as f:
         words = f.readlines()
@@ -21,5 +15,5 @@ def main():
 
     matches = [x for x in words if sorted(x.lower()) == sorted(input.lower())]
     print(matches[0])
-  
+
 main()
