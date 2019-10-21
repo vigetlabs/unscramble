@@ -1,0 +1,18 @@
+require "pathname"
+
+namespace :go do
+  task :clean do
+    path = Pathname.new(__FILE__).join("..").expand_path
+    `rm #{path.join("unscramble")}`
+  end
+
+  task :check do
+    `which go`
+    raise "No Golang compiler found" unless $?.success?
+  end
+
+  task :build => :check do
+    path = Pathname.new(__FILE__).join("..").expand_path
+    `cd #{path} && go build unscramble.go`
+  end
+end
