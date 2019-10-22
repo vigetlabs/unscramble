@@ -1,7 +1,7 @@
 open Base
 open Stdio
 
-let file = "/usr/share/dict/cracklib-small"
+let file = "/usr/share/dict/words"
 
 let sorted_letters w =
   let letters = String.to_list w in
