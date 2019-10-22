@@ -12,8 +12,11 @@ let same_letters w1 w2 =
   and l2 = sorted_letters w2 in
   List.equal Char.equal l1 l2
 
-let same_length w1 w2 =
-  String.length w1 = String.length w2
+let filter_dict input dict =
+  let l = String.length input
+  and f = String.get input 0 in
+  List.filter dict (fun (w) ->
+    String.length w = l && String.contains w f)
 
 let rec find_match input = function
   | w :: ws ->
@@ -25,6 +28,6 @@ let rec find_match input = function
 
 let dictionary = Stdio.In_channel.read_lines file in
 let input = Array.get Sys.argv 1 in
-let possible_matches = List.filter dictionary (same_length input) in
+let possible_matches = filter_dict input dictionary in
 let result = find_match input possible_matches in
 Stdio.print_endline result
