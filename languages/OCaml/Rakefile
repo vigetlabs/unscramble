@@ -28,6 +28,12 @@ namespace :OCaml do
     unless $?.success?
       raise "Base not installed, please run `opam install base`"
     end
+
+    `ocamlfind query stdio`
+
+    unless $?.success?
+      raise "Stdio not installed, please run `opam install stdio`"
+    end
   end
 
   task :build => :check do
