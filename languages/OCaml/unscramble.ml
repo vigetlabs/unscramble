@@ -8,21 +8,23 @@ let sorted_letters w =
   List.sort letters Poly.compare
 
 let same_letters w1 w2 =
-  let l1 = sorted_letters w1 and l2 = sorted_letters w2 in
+  let l1 = sorted_letters w1
+  and l2 = sorted_letters w2 in
   List.equal Char.equal l1 l2
 
-let rec find_match input words =
-  match words with
-  | w :: ws -> if same_letters input w then
-                w
-              else
-                find_match input ws
-  | [] -> failwith "No match found."
-;;
+let same_length w1 w2 =
+  String.length w1 = String.length w2
+
+let rec find_match input = function
+  | w :: ws ->
+      if same_letters input w then
+        w
+      else
+        find_match input ws
+  | [] -> failwith "No match found.";;
 
 let dictionary = Stdio.In_channel.read_lines file in
 let input = Array.get Sys.argv 1 in
-let same_length = fun (w) -> String.length w = String.length input in
-let possible_matches = List.filter dictionary same_length in
+let possible_matches = List.filter dictionary (same_length input) in
 let result = find_match input possible_matches in
 Stdio.print_endline result
