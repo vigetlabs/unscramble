@@ -2,13 +2,15 @@ require 'minitest/autorun'
 
 class UnscrambleTest < MiniTest::Test
   JUMBLES = {
-    'ot'      => 'to',
-    'hye'     => 'hey',
-    'ebdt'    => 'debt',
-    # note: these should pass too, but take longer to run
-    # 'salos'   => 'lasso',
-    # 'cluen'   => 'uncle',
-    # 'fryrul'  => 'flurry'
+    'tmorcpue'  => 'computer',
+    'crootd'    => 'doctor',
+    'gfroo'     => 'forgo',
+    'cluen'     => 'uncle',
+    'rubwor'    => 'burrow',
+    'ittcek'    => 'ticket',
+    'cuthh'     => 'hutch',
+    'rptiem'    => 'permit',
+    'fryrul'    => 'flurry'
   }
 
   JUMBLES.each do |input, output|
