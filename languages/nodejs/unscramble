@@ -33,7 +33,9 @@ function swap(array, a, b) {
 findPermutations(characters.length, characters)
 
 var dictionaryWords = new Set(
-  fs.readFileSync('/usr/share/dict/words', 'utf-8').split('\n')
+  fs.readFileSync('/usr/share/dict/words', 'utf-8')
+    .split('\n')
+    .filter(w => w.length === characters.length)
 )
 
 let found = null
