@@ -2,7 +2,7 @@ defmodule UnscrambleTest do
   use ExUnit.Case
   doctest Unscramble
 
-  test "greets the world" do
-    assert Unscramble.hello() == :world
+  test "unscrambles the world" do
+    assert Unscramble.parse("ldwor") == ["world"]
   end
 end
