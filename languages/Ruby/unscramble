@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-input  = ARGV.last
-output = '' # TODO lol
-
-print output
