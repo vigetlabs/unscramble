@@ -7,6 +7,11 @@ We're gonna write a program that can unscramble a word. Like the individual "Jum
     force
     > ./unscramble sasewe
     seesaw
+    
+Basic guidelines:
+
+1. A scrambled or jumbled word has only one valid answer.
+2. Use the contents of `/usr/share/dict/words` as a dictionary.
 
 To start:
 
