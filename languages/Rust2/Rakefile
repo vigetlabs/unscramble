@@ -1,6 +1,6 @@
-namespace :Rust do
+namespace :Rust2 do
   task :check do
-    File.exists?("#{File.dirname(__FILE__)}/target/release/Rust") or raise "run cargo build --release"
+    File.exists?("#{File.dirname(__FILE__)}/target/release/unscramble") or raise "run cargo build --release"
   end
 
   task :build => :check do
