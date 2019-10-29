@@ -1,12 +1,49 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-var input = process.argv[2];
-var output = ''; // TODO lol
+var fs = require('fs');
 
-if (!input) {
-  process.exit(1);
+const input = process.argv[2]
+const characters = input.split('')
+let permutations = new Set()
+
+// Heap's algorithm
+function findPermutations(n, array) {
+  if (n == 1) {
+    permutations.add(array.join(''))
+    return
+  }
+
+  for (var i = 0; i < n; i+= 1) {
+    findPermutations(n - 1, array)
+
+    if (n % 2 == 0) {
+      swap(array, i, n - 1)
+    } else {
+      swap(array, 0, n - 1)
+    }
+  }
 }
 
-console.log(output);
+function swap(array, a, b) {
+  [array[a], array[b]] = [array[b], array[a]]
+}
+
+findPermutations(characters.length, characters)
+
+var dictionaryWords = new Set(
+  fs.readFileSync('/usr/share/dict/words', 'utf-8')
+    .split('\n')
+    .filter(w => w.length === characters.length)
+)
+
+let found = null
+permutations.forEach(str => {
+  if (dictionaryWords.has(str)) {
+    found = str
+    return
+  }
+})
+
+console.log(found)

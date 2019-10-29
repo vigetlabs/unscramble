@@ -4,7 +4,6 @@ class UnscrambleTest < MiniTest::Test
   JUMBLES = {
     'tmorcpue'  => 'computer',
     'crootd'    => 'doctor',
-    'salos'     => 'lasso',
     'gfroo'     => 'forgo',
     'cluen'     => 'uncle',
     'rubwor'    => 'burrow',
