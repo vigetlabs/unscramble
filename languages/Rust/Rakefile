@@ -1,0 +1,11 @@
+namespace :Rust do
+  task :check do
+    File.exists?("#{File.dirname(__FILE__)}/target/release/Rust") or raise "run cargo build --release"
+  end
+
+  task :build => :check do
+    
+    path = File.dirname(__FILE__)
+    `cd #{path}; cp target/release/unscramble ./`
+  end
+end

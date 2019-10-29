@@ -1,2 +1,6 @@
 .ruby-version
 .ds_store
+
+languages/typescript/unscramble.js
+languages/typescript/node_modules
+languages/Rust/target
