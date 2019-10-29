@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+normalize() {
+  echo "$1" | fold -w1 | sort | tr -d '\n'
+}
+
+input="$1"
+len="${#input}"
+letters="$(echo "$input" | fold -w1 | sort -u)"
+normal_input="$(normalize "$input")"
+
+while read -r w; do
+  if (( ${#w} == len )) && [[ "$w" =~ ^[$letters].* ]]; then
+    if [[ "$(normalize "$w")" == "$normal_input" ]]; then
+      echo "$w"
+      exit
+    fi
+  fi
+done < /usr/share/dict/words
