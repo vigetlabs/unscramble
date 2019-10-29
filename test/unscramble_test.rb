@@ -9,10 +9,9 @@ class UnscrambleTest < MiniTest::Test
     'cluen'     => 'uncle',
     'rubwor'    => 'burrow',
     'ittcek'    => 'ticket',
-    'nitmyu'    => 'munity',
     'cuthh'     => 'hutch',
     'rptiem'    => 'permit',
-    'fryrul'    => 'flurry'
+    'fryrul'    => 'flurry',
   }
 
   JUMBLES.each do |input, output|

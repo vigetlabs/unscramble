@@ -1,0 +1,15 @@
+namespace :typescript do
+  task :check do
+    `which yarn`
+    raise "Please ensure that you have Yarn installed" unless $?.success?
+    `which tsc`
+    raise "Please ensure that you have Typescript installed" unless $?.success?
+    `which node`
+    raise "Please ensure that you have node.js installed" unless $?.success?
+  end
+
+  task :build => :check do
+    `cd languages/typescript && yarn install`
+    `cd languages/typescript && tsc unscramble.ts`
+  end
+end
