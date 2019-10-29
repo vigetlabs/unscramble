@@ -1,4 +1,5 @@
 build:
+	MIX_ENV=prod mix deps.get
 	MIX_ENV=prod mix escript.build
 
 watch:
