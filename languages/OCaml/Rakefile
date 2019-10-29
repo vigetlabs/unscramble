@@ -1,0 +1,45 @@
+namespace :OCaml do
+  task :clean do
+    path = File.dirname(__FILE__)
+    `cd #{path}; rm -f unscramble *.cmi *.cmo`
+  end
+
+  task :check do
+    `which ocaml`
+
+    unless $?.success?
+      raise "ocaml not installed, please run `brew install ocaml`"
+    end
+
+    `which opam`
+
+    unless $?.success?
+      raise "opam not installed, please run `brew install opam`"
+    end
+
+    `which ocamlfind`
+
+    unless $?.success?
+      raise "ocamlfind not installed, please run `opam install ocamlfind`"
+    end
+
+    `ocamlfind query base`
+
+    unless $?.success?
+      raise "Base not installed, please run `opam install base`"
+    end
+
+    `ocamlfind query stdio`
+
+    unless $?.success?
+      raise "Stdio not installed, please run `opam install stdio`"
+    end
+  end
+
+  task :build => :check do
+    path = File.dirname(__FILE__)
+    `cd #{path}; ocamlfind ocamlc -package base -package stdio -linkpkg -o unscramble unscramble.ml`
+  end
+end
+
+task :default => 'OCaml:build'
