@@ -1,7 +1,10 @@
-desc "Build and run all available programs in the languages/* directory"
-task :run do
-  puts "Building all languages ..."
-  Dir["languages/*/Rakefile"].sort.each do |path_to_rakefile|
+desc "Build and run the program in the specified languages/ directory"
+task :run, :arg1 do |t, args|
+  language_glob = args[:arg1] || '*'
+  language_glob_desc = args[:arg1] || 'all languages'
+
+  puts "Building #{language_glob_desc}..."
+  Dir["languages/#{language_glob}/Rakefile"].sort.each do |path_to_rakefile|
     base_path, language, _ = path_to_rakefile.split('/')
 
     language_path = "#{base_path}/#{language}"

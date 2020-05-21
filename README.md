@@ -23,7 +23,8 @@ To start:
 1. Clone this repository.
 2. Create a directory based on the name of your implementation language (e.g. `languages/C`)
 3. Create a simple `Rakefile` that has, at a minimum, a `build` task within your language's namespace (e.g. `C:build`).  You should check the environment and fail fast if dependencies aren't met.
-4. Create your implementation and run `rake` from the project root.
+4. Create your implementation.
+5. From the project root run `rake run[<language>]` to test your language (e.g. `rake run[bash]`; zsh users will have to quote the argument, e.g. `rake run'[bash]'`), or `rake` to test all languages.
 
 ### Example Rakefile
 
