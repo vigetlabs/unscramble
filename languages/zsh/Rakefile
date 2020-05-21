@@ -1,0 +1,10 @@
+namespace :zsh do
+  task :check do
+    `which zsh`
+    raise "Please ensure that you have zsh installed" unless $?.success?
+  end
+
+  task :build => :check do
+    # no-opr
+  end 
+end
