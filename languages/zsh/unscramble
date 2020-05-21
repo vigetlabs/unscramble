@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+# A zsh script to unscramble a word.
+
+input_length=${#1}
+input_letters=${${(Lo)${(s::)1}}}
+
+while read word; do
+  if [[ ${#word} == $input_length ]] && [[ ${${(Lo)${(s::)word}}} == $input_letters ]]; then
+    echo $word
+    exit
+  fi
+done < /usr/share/dict/words
