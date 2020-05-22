@@ -26,6 +26,8 @@ To start:
 4. Create your implementation.
 5. From the project root run `rake run[<language>]` to test your language (e.g. `rake run[bash]`; zsh users will have to quote the argument, e.g. `rake run'[bash]'`), or `rake` to test all languages.
 
+Note that the tests run against English words. If you use a different language, symlink `/usr/share/dict/words` to an English word list to run the tests. If your system does not come with an English word list installed, install `wamerican` or `wbritish` (e.g. Ubuntu `apt-get install wamerican`); [english-words](https://github.com/dwyl/english-words)'s `words.txt` will do as well.
+
 ### Example Rakefile
 
 ```ruby
